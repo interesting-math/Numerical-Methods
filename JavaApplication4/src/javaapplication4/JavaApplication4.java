@@ -1026,90 +1026,551 @@ public class JavaApplication4 {
         }
     }
     
-    static double Function_For_Coordinate_Descent_Method(double x, double y) {
-        return 18*Math.pow(x, 3)-12*Math.pow(y, 3)+5*Math.pow(x, 2)*Math.pow(y, 2)-3*x+24*x*y+75;
+    static double Function_For_Coordinate_Descent_Method(double[] x) {
+        return Math.pow(x[1]-Math.pow(x[0], 2.0), 2.0) + Math.pow(1.0 - x[0], 2.0);
     }
-    /*
-    static boolean Break_Condition_1_For_Coordinate_Descent_Method(int n, double E, double[] x_cur, double[] x_prev) {_
-            double norm = 0.0;
-            for (int i = 0; i < n; i++) {
-                if (Math.abs(x_cur[i] - x_prev[i]) >= E) {
-                    return false;
-                }
-            }
+    
+    static boolean Break_Condition_1_For_Coordinate_Descent_Method(int n, double[] x_cur, double[] x_prev, double E) {
+        for (int i = 0; i < n; i++) {
+            if (Math.abs(x_cur[i] - x_prev[i]) >= E) return false;
+        }
+        return true;
+    }
+    
+    static boolean Break_Condition_2_For_Coordinate_Descent_Method(int n, double[] x_cur, double[] x_prev, double E) {
+        if (Function_For_Coordinate_Descent_Method(x_cur)-Function_For_Coordinate_Descent_Method(x_prev) < E) {
             return true;
+        }
+        return false;
     }
-    */
+    
     static void Coordinate_Descent_Method() {
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Optimization using coordinate descent method");
+        System.out.println();
         
-        int n;
+        int n = 2;
+        System.out.println("f(x) = Math.pow(x[1] - x[0]*x[0], 2.0) + Math.pow(1.0 - x[0], 2.0) -> min");
+     /*
         System.out.print("Enter n (dimention of space): ");
         n = sc.nextInt();
-        
+     */ 
         double E;
         System.out.print("Enter EPS: ");
         E = sc.nextDouble();
         
         System.out.println("Enter initial approach: ");
         System.out.print("X0: ");
+        
         double[] X0 = new double[n];
         for (int i = 0; i < n; i++) {
-            X0[i] = sc.nextInt();
+            X0[i] = sc.nextDouble();
+        }
+        double[] x_prev = new double[n];
+        for (int i = 0; i < n; i++) {
+            x_prev[i] = X0[i];
+        }
+        double[] x_cur = new double[n];
+        for (int i = 0; i < n; i++) {
+            x_cur[i] = x_prev[i];
         }
         
+        System.out.println("");
+        
+        for (int iteration = 1; true; iteration++) {
+            System.out.println("iteration " + iteration + ": ");
+            for (int i = 0; i < n; i++) {
+                if (i == 0) System.out.println("Optimization of the first coordinate:");
+                if (i == 1) System.out.println("Optimization of the second coordinate:"); 
+                Golden_Section_Search(x_cur, i, E, n);  
+            }
+            System.out.println("f(current x): " + Function_For_Coordinate_Descent_Method(x_cur));
+            System.out.println();
+            if (Break_Condition_1_For_Coordinate_Descent_Method(n , x_cur, x_prev, E)) {
+                System.out.println("Number of iterations: " + iteration);
+                break;
+            }
+            for (int i = 0; i < n; i++) {
+                x_prev[i] = x_cur[i];
+            }
+            
+            System.out.println();
+        }
+        
+        System.out.print("X*: ");
+        System.out.print("{");
+        for (int i = 0; i < n-1; i++) {
+            System.out.print(x_cur[i] + ", ");
+        }
+        System.out.println(x_cur[n-1] + "}");
+        
+        System.out.println("min(f(x)): " + Function_For_Coordinate_Descent_Method(x_cur));
     }
     
-    static double Function_For_Golden_Section_Search(double x, double n) {
-        return 2.0 * Math.pow(x-n/20, 2.0) + 16.0/x;
+    static double Function_For_Golden_Section_Search(double[] x, double n) {
+        // return 2.0 * Math.pow(x-n/20.0, 2.0) + 16.0/x;
+        return Math.pow(x[1] - x[0]*x[0], 2.0) + Math.pow(1.0 - x[0], 2.0);
     }
     
-    static void Golden_Section_Search() {
-        final double phi = (Math.sqrt(5.0)-1)/2.0;
+    static void Golden_Section_Search(double[] x, int coordinate_for_optimization, double E, int n) {
+        final double phi = (Math.sqrt(5.0)-1.0)/2.0 + 1.0;
+  
+  /*
+        Scanner sc = new Scanner(System.in);
+              
+        double n;
+        System.out.print("Enter n (variant of your work): ");
+        n = sc.nextDouble();
+  */
+        
+  /*      
+        System.out.print("Enter the boundaries of the segment (left, right): ");
+        double a = sc.nextDouble(); double b = sc.nextDouble();
+  */      
+        double a = -10.0;
+        double b = 10.0;
+  
+        double x0 = 0.0;
+        
+        for(int it = 1; true; it++) {
+            double len = b-a;
+            double prev_a = a, prev_b = b;
+
+            x0 = a;
+            int iteration = 0;
+
+    //        System.out.println("phi: " + phi);
+            
+            for (iteration = 1; true; iteration++) {
+/*
+                System.out.println("iteration: " + iteration);
+
+                System.out.println("left: " + a + "; right: " + b);
+*/
+                double x1 = b - (b-a)/phi;
+                double x2 = a + (b-a)/phi;
+
+//                System.out.println("x1: " + x1 + "; x2: " + x2);
+
+                x[coordinate_for_optimization] = x1;
+                double y1 = Function_For_Golden_Section_Search(x, coordinate_for_optimization);
+                x[coordinate_for_optimization] = x2;
+                double y2 = Function_For_Golden_Section_Search(x, coordinate_for_optimization);
+
+//                System.out.println("y1: " + y1 + "; y2: " + y2);
+
+                if (y1 >= y2) {
+//                    System.out.println("y1 > y2");
+
+                    a = x1; x1 = x2; x2 = a + (b-a)/phi;
+
+/*                    
+                    System.out.println("a = x1; x1 = x2; x2 = a + (b-a)/phi;");
+
+                    System.out.println("a: " + a);
+                    System.out.println("b: " + b);
+
+                    System.out.println("x1: " + x1);
+                    System.out.println("x2: " + x2);
+*/
+                }
+                else {
+//                    System.out.println("y1 <= y2");
+
+                    b = x2; x2 = x1; x1 = b - (b-a)/phi;
+
+/*                    
+                    System.out.println("b = x2; x2 = x1; x1 = b - (b-a)/phi;");
+
+                    System.out.println("a: " + a);
+                    System.out.println("b: " + b);
+
+                    System.out.println("x1: " + x1);
+                    System.out.println("x2: " + x2);
+*/
+                }
+
+                if (Math.abs(b-a) < E) {
+                    x0 = (a+b)/2;
+                    break;
+                }
+
+//                System.out.println();
+            }
+    
+            boolean is_bound = false;
+            if (Math.abs(x0 - prev_a) < E) {
+                prev_b = prev_a + 1.0;
+                prev_a -= 2*len;
+                is_bound = true;
+            }
+            if (Math.abs(x0 - prev_b) < E) {
+                prev_a = prev_b - 1.0;
+                prev_b += 2*len;
+                is_bound = true;
+            }
+            if (!is_bound) {
+                break;
+            }            
+            
+            /*
+            System.out.println();
+            System.out.println();
+            System.out.println("x: " + x0);
+            System.out.println("extr(loc. min): " + Function_For_Golden_Section_Search(x, coordinate_for_optimization));
+            System.out.println("Number of iteration: " + iteration);
+            */
+        }
+        
+        x[coordinate_for_optimization] = x0;
+        
+
+        System.out.println("current x: ");
+        System.out.print("{");
+        for (int i = 0; i < n-1; i++) {
+            System.out.print(x[i] + ", ");
+        }
+        System.out.println(x[n-1] + "}");
+        System.out.println();
+    }
+        
+    public static double Function_For_Steepest_Descent_Method(int n, double[] x) {
+        return Math.pow(x[1] - Math.pow(x[0], 2.0), 2.0) + Math.pow(1.0 - x[0], 2.0);
+    }
+    
+    public static double[] Gradient_For_Steepest_Descent_Method(int n, double[] x) {
+        double[] gradient = new double[n];
+        gradient[0] = -4.0*x[0]*(x[1] - Math.pow(x[0], 2.0)) - 2.0*(1.0 - x[0]);
+        gradient[1] = 2.0*(x[1] - Math.pow(x[0], 2.0));
+        return gradient;
+    }
+    
+    
+    static double Function_For_Golden_Section_Search_For_Steepest_Descent_Method(double[] x, int coordinate_of_lambda, double[] gradient) {
+        // coordinate_of_lambda = n (default)
+        int n = coordinate_of_lambda;
+        
+        double[] x_new = new double[coordinate_of_lambda];
+        for (int i = 0; i < n; i++) {
+            x_new[i] = x[i] - x[coordinate_of_lambda] * gradient[i];
+        }
+        return Function_For_Steepest_Descent_Method(n, x_new);
+    }
+    
+    static void Golden_Section_Search_For_Steepest_Descent_Method(double[] x, int coordinate_for_optimization, double E, double[] gradient) {
+        final double phi = (Math.sqrt(5.0)-1.0)/2.0 + 1.0;
+        int n = coordinate_for_optimization;
+        
+        double a = 0.0;
+        double b = 10.0;
+  
+        double lambda = 0.0;
+        
+        for(int it = 1; true; it++) {
+            double len = b-a;
+            double prev_a = a, prev_b = b;
+
+            lambda = a;
+            int iteration = 0;
+
+            for (iteration = 1; true; iteration++) {
+                
+                double x1 = b - (b-a)/phi;
+                double x2 = a + (b-a)/phi;
+
+                x[coordinate_for_optimization] = x1;
+                double y1 = Function_For_Golden_Section_Search_For_Steepest_Descent_Method(x, coordinate_for_optimization, gradient);
+                x[coordinate_for_optimization] = x2;
+                double y2 = Function_For_Golden_Section_Search_For_Steepest_Descent_Method(x, coordinate_for_optimization, gradient);
+
+                if (y1 >= y2) {
+                    a = x1; x1 = x2; x2 = a + (b-a)/phi;
+                }
+                else {
+                    b = x2; x2 = x1; x1 = b - (b-a)/phi;
+                }
+
+                if (Math.abs(b-a) < E) {
+                    lambda = (a+b)/2;
+                    break;
+                }
+            }
+    
+            boolean is_bound = false;
+            if (Math.abs(lambda - prev_b) < E) {
+                prev_a = prev_b - 1.0;
+                prev_b += 2*len;
+                is_bound = true;
+            }
+            if (!is_bound) {
+                break;
+            }
+            /*
+            System.out.println();
+            System.out.println();
+            System.out.println("x: " + lambda);
+            System.out.println("extr(loc. min): " + Function_For_Golden_Section_Search_For_Steepest_Descent_Method(x, coordinate_for_optimization, gradient));
+            System.out.println("Number of iteration: " + iteration);
+            */
+        }
+        x[coordinate_for_optimization] = lambda;
+    }
+    
+    public static void Steepest_Descent_Method() {
+        System.out.println("Optimization using steepest descent method");
+        System.out.println("f(x) = Math.pow(x[1] - x[0]*x[0], 2.0) + Math.pow(1.0 - x[0], 2.0) -> min");
+
         
         Scanner sc = new Scanner(System.in);
         
-        double n;
-        System.out.print("Enter n (variant of your job): ");
-        n = sc.nextDouble();
+        System.out.print("Enter the dimention of a space: ");
+        int n = sc.nextInt();
         
-        System.out.print("Enter initial approach: ");
+        System.out.print("Enter X0: ");
+        double[] x = new double[n+1];
+        for (int i = 0; i < n; i++) {
+            x[i] = sc.nextDouble();
+        }
         
-        System.out.print("Enter the boundaries of the segment (left, right): ");
-        double a = sc.nextDouble(); double b = sc.nextDouble();
-        
-        double E;
         System.out.print("Enter EPS: ");
-        E = sc.nextDouble();
+        double E = sc.nextDouble();
         
-        double x = a;
-        int iteration = 0;
-        for (iteration = 1; true; iteration++) {
-            double x1 = b - (b-a)/phi;
-            double x2 = a + (b-a)/phi;
+        for (int iteration = 1; true; iteration++) {
+            System.out.println();
+            System.out.println("iteration: " + iteration);
             
-            double y1 = Function_For_Golden_Section_Search(x1, n);
-            double y2 = Function_For_Golden_Section_Search(x2, n);
-            
-            if (y1 >= y2+E) {
-                a = x1; x1 = x2; x2 = a + (b-a)/phi;
+            double[] gradient = Gradient_For_Steepest_Descent_Method(n, x);
+           
+            System.out.println("Gradient:");
+            System.out.print("{");
+            for (int i = 0; i < n-1; i++) {
+                System.out.print(gradient[i] + ", ");
             }
-            else {
-                b = x2; x2 = x1; x1 = b - (b-a)/phi;
+            System.out.println(gradient[n-1] + "}");
+            
+            Golden_Section_Search_For_Steepest_Descent_Method(x, n, E, gradient);
+            
+            double lambda = x[n];
+            
+            double[] x_next = new double[n+1];
+            for (int i = 0; i < n; i++) {
+                x_next[i] = x[i] - lambda*gradient[i];
+            }
+        
+            boolean is_break_statement_satisfied = true;
+            for (int i = 0; i < n; i++) {
+                if (Math.abs(x_next[i] - x[i]) >= E) {
+                    is_break_statement_satisfied = false;
+                    break;
+                }
             }
             
-            if (Math.abs(b-a) < E) {
-                x = (a+b)/2;
+            if (is_break_statement_satisfied) {
+                System.out.println();   
+                System.out.println("Number of iterations: " + iteration);
                 break;
             }
+            
+            for (int i = 0; i < n; i++) { 
+                x[i] = x_next[i];
+            }
+            
+            System.out.println("current x: ");
+            System.out.print("{");
+            for (int i = 0; i < n-1; i++) {
+                System.out.print(x[i] + ", ");
+            }
+            System.out.println(x[n-1] + "}");    
+            
+            System.out.println("f(current x): " + Function_For_Steepest_Descent_Method(n, x));
         }
-        System.out.println("x: " + x);
-        System.out.println("minv: " + Function_For_Golden_Section_Search(x, n));
-        System.out.println("Number of iteration: " + iteration);
+        
+        System.out.print("X*: ");
+        System.out.print("{");
+        for (int i = 0; i < n-1; i++) {
+            System.out.print(x[i] + ", ");
+        }
+        System.out.println(x[n-1] + "}");
+        
+        System.out.println("min(f(x)): " + Function_For_Steepest_Descent_Method(n, x));
+    }
+    
+    static double Exact_Solution_For_Runge_Kutta_Method(double x) {
+        return 0.25*(-6.0*x - 7*Math.exp(-2*x)+7);
+    }
+    
+    static double Derivative_For_Runge_Cutta_Method(double x, double y) {
+        return -2.0*y-3.0*x+2.0;
+    }
+    
+    static double coeffRK(double x, double y, double h, int p) {
+/*
+        Неклассический вариант для 4-го порядка
+        double k1 = h * Derivative_For_Runge_Cutta_Method(x, y);
+        double k2 = h * Derivative_For_Runge_Cutta_Method(x + h/3, y + k1/3);
+        double k3 = h * Derivative_For_Runge_Cutta_Method(x + 2*h/3, y + k1/3 + k2);
+        double k4 = h * Derivative_For_Runge_Cutta_Method(x + h, y + k1 - k2 + k3);
+ */
+        if (p == 1) {
+            // Euler method
+            return h*Derivative_For_Runge_Cutta_Method(x, y);
+        }
+        if (p == 2) {
+            double K1 = Derivative_For_Runge_Cutta_Method(x, y);
+            double K2 = Derivative_For_Runge_Cutta_Method(x + h/2, y + h/2 * K1);
+            return h*K2;
+        }
+        if (p == 3) {
+            double K1 = h*Derivative_For_Runge_Cutta_Method(x, y);
+            double K2 = h*Derivative_For_Runge_Cutta_Method(x + h/2, y + K1/2);
+            double K3 = h*Derivative_For_Runge_Cutta_Method(x + h, y + 2*K2 - K1);
+            return (K1 + 4*K2 + K3)/6.0;
+        }
+        if (p == 4) {
+            double K1 = Derivative_For_Runge_Cutta_Method(x, y);
+            double K2 = Derivative_For_Runge_Cutta_Method(x + h/2, y + h/2 * K1);
+            double K3 = Derivative_For_Runge_Cutta_Method(x + h/2, y + h/2 * K2);
+            double K4 = Derivative_For_Runge_Cutta_Method(x + h, y + h * K3);
+            return (K1 + 2*K2 + 2*K3 + K4)*h/6;
+        }   
+    }
+    
+    static void Runge_Kutta_Method() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter X0: ");
+        double x = sc.nextDouble();
+        
+        System.out.print("Enter Y0: ");
+        double y = sc.nextDouble();
+        
+        System.out.print("Enter [a, b]: ");
+        double a, b;
+        a = sc.nextDouble();
+        b = sc.nextDouble();
+        
+        double h = b-a;
+        
+        System.out.print("Enter EPS: ");
+        double E = sc.nextDouble();
+      
+        while (x <= 1.0) {
+            // Четвертый порядок метода Рунге-Кутты
+            double y1 = y + coeffRK(x, y, h, 4);
+            
+            while (true) {
+                double y2 = y + coeffRK(x, y, h/2, 4);
+                double y3 = y2 + coeffRK(x + h/2, y2, h/2, 4);
+
+                System.out.println();
+                System.out.print("x: " + x + ", ");
+                System.out.println("y: " + y);
+
+                System.out.println("exact: " + Exact_Solution_For_Runge_Kutta_Method(x));
+            
+                double delta = Math.abs(y1 - y3) / 15;
+                System.out.println("delta: " + delta);
+                
+                if (delta < E) { 
+                    y = y3;
+                    
+                    x = x + h;
+                    
+                    if (delta < E/2) {
+                        h *= 2;
+                    }
+                    break;
+                }
+                h /= 2.0; y1 = y2;
+            }
+        }
+    }
+    
+    static double Z_Derivative(double x, double y, double z) {
+        return Math.exp(x) + Math.sin(y);
+    }
+    
+    static void Runge_Kutta_Method_For_Shooting_Method(double x, double y, double a, double b, double E, int p) {
+        double h = b-a;
+        if (p == 2) {
+            while (x <= b) {
+                
+            }
+        }
+        
+        if (p == 4) {
+            while (x <= 1.0) {
+            // Четвертый порядок метода Рунге-Кутты
+            double y1 = y + coeffRK(x, y, h, 4);
+            
+            while (true) {
+                double y2 = y + coeffRK(x, y, h/2, 4);
+                double y3 = y2 + coeffRK(x + h/2, y2, h/2, 4);
+
+                System.out.println();
+                System.out.print("x: " + x + ", ");
+                System.out.println("y: " + y);
+
+                System.out.println("exact: " + Exact_Solution_For_Runge_Kutta_Method(x));
+            
+                double delta = Math.abs(y1 - y3) / 15;
+                System.out.println("delta: " + delta);
+                
+                if (delta < E) { 
+                    y = y3;
+                    
+                    x = x + h;
+                    
+                    if (delta < E/2) {
+                        h *= 2;
+                    }
+                    break;
+                }
+                h /= 2.0; y1 = y2;
+            }
+        }
+        }
+    }
+    
+    static void Shooting_Method() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a: ");
+        double a = sc.nextDouble();
+        
+        System.out.print("Enter f(a): ");
+        double fa = sc.nextDouble();
+        
+        System.out.print("Enter b: ");
+        double b = sc.nextDouble();
+        
+        System.out.print("Enter f(b): ");
+        double fb = sc.nextDouble();
+        
+        System.out.print("Enter h: ");
+        double h = sc.nextDouble();
+        
+        System.out.print("Enter EPS: ");
+        double E = sc.nextDouble();
+        
+        System.out.print("Enter p: ");
+        int p = sc.nextInt();
+        
+        double m1 = 1.0, m2 = 0.8;
+        
+        for (int iteration = 0; true; iteration++) {
+            double x = a;
+            
+            
+        }
+        
     }
     
     public static void main(String[] args) {  
-        Method_Of_Tangents();
+      //  Runge_Kutta_Method();
+       
+        Shooting_Method(); 
         
         /*
         
