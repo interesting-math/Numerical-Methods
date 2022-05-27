@@ -1,0 +1,38 @@
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\bin\Debug\Численное интегрирование.exe
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\bin\Debug\Численное интегрирование.pdb
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Form1.resources
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Properties.Resources.resources
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\Численное интегрирование.exe
+D:\Documents and Settings\Alexander\Local Settings\Application Data\Temporary Projects\Численное интегрирование\obj\x86\Debug\Численное интегрирование.pdb
+D:\Documents and Settings\Alexander\мои документы\visual studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.exe
+D:\Documents and Settings\Alexander\мои документы\visual studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.pdb
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.exe
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.pdb
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Form1.resources
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Properties.Resources.resources
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Documents and Settings\Alexander\Мои документы\Visual Studio 2010\Projects\Численное интегрирование\Численное интегрирование\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.exe.config
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.exe
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.pdb
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csproj.AssemblyReference.cache
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csproj.SuggestedBindingRedirects.cache
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Form1.resources
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Properties.Resources.resources
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csproj.GenerateResource.cache
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csproj.CoreCompileInputs.cache
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.exe
+C:\Users\Александр\Desktop\Flash Recovery\Recover\ЧМ\numerical integration (lab 6, numerical methods)\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.pdb
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.exe.config
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.exe
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.pdb
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.exe
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\bin\Debug\Численное интегрирование.pdb
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csprojResolveAssemblyReference.cache
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Form1.resources
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное_интегрирование.Properties.Resources.resources
+D:\Flash\Flash Recovery\Recover\На проверку\Численное интегрирование\Численное интегрирование\obj\x86\Debug\Численное интегрирование.csproj.GenerateResource.Cache
